@@ -44,7 +44,7 @@ fun ProductsScreen(
 
 
 @Composable
-fun AppBottomBar() {
+private fun AppBottomBar() {
     BottomAppBar {
         NavigationBarItem(
             selected = false,
@@ -87,7 +87,7 @@ fun AppBottomBar() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppTopBar() {
+private fun AppTopBar() {
     TopAppBar(
         title = {
             Text(text = "Produtos")
