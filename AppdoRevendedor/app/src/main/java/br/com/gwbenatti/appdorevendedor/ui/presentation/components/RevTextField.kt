@@ -1,4 +1,4 @@
-package br.com.gwbenatti.appdorevendedor.ui.presentation.common.components
+package br.com.gwbenatti.appdorevendedor.ui.presentation.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer

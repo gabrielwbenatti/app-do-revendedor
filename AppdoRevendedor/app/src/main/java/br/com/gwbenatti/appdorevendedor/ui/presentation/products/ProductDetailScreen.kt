@@ -1,7 +1,6 @@
 package br.com.gwbenatti.appdorevendedor.ui.presentation.products
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -27,12 +26,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import br.com.gwbenatti.appdorevendedor.ui.presentation.common.components.RevSectionComponents
-import br.com.gwbenatti.appdorevendedor.ui.presentation.common.components.RevTextField
-import br.com.gwbenatti.appdorevendedor.ui.theme.AppDoRevendedorTheme
+import br.com.gwbenatti.appdorevendedor.ui.presentation.components.RevSectionComponents
+import br.com.gwbenatti.appdorevendedor.ui.presentation.components.RevTextField
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -24,6 +24,7 @@ class MainActivity : ComponentActivity() {
                     navController = navController,
                     startDestination = "products"
                 ) {
+
                     composable(route = "products") { ProductsScreen(navController) }
                     composable(
                         route = "products/{productId}",
