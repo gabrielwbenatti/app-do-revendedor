@@ -10,7 +10,6 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.Person
-import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
@@ -18,22 +17,55 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import br.com.gwbenatti.appdorevendedor.domain.model.Family
+import br.com.gwbenatti.appdorevendedor.domain.model.Group
 import br.com.gwbenatti.appdorevendedor.domain.model.Product
 import br.com.gwbenatti.appdorevendedor.ui.presentation.components.productsList
+import br.com.gwbenatti.appdorevendedor.ui.theme.AppDoRevendedorTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProductsScreen(
     navController: NavController
 ) {
+    val products = listOf<Product>(
+        Product(
+            1,
+            "Malbec 100ml",
+            10.9,
+            null,
+            Family(1, "Perfumaria"),
+            Group(1, "Malbec"),
+        ),
+        Product(
+            2,
+            "Malbec Gold 100ml",
+            209.9,
+            189.9,
+            Family(1, "Perfumaria"),
+            Group(1, "Malbec"),
+        ),
+        Product(
+            2,
+            "Hidratante Deleite 400ml",
+            59.9,
+            null,
+            Family(2, "Corpo e Banho"),
+            Group(2, "Cuide-se Bem"),
+        ),
+    )
+
     Scaffold(
-        topBar = { AppTopBar() },
-        bottomBar = { AppBottomBar() },
+        topBar = { ProductsTopBar() },
+        bottomBar = { ProductsBottomBar() },
         floatingActionButton = {
             ExtendedFloatingActionButton(
                 text = { Text(text = "Novo Produto") },
@@ -44,24 +76,23 @@ fun ProductsScreen(
             )
         },
     ) { paddingValues ->
-        LazyColumn(
+        Surface(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(paddingValues)
         ) {
-            productsList(
-                products = listOf(
-                    Product(1, "teste", 55.9, null),
-                    Product(2, "teste", 55.9, 44.9),
+            LazyColumn {
+                productsList(
+                    products = products,
                 )
-            )
+            }
         }
     }
 }
 
 
 @Composable
-private fun AppBottomBar() {
+private fun ProductsBottomBar() {
     BottomAppBar {
         NavigationBarItem(
             selected = false,
@@ -104,7 +135,7 @@ private fun AppBottomBar() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun AppTopBar() {
+private fun ProductsTopBar() {
     TopAppBar(
         title = {
             Text(text = "Produtos")
@@ -120,4 +151,13 @@ private fun AppTopBar() {
             }
         }
     )
+}
+
+@Preview
+@Composable
+fun ProductsScreenPreview() {
+    val nav = rememberNavController()
+    AppDoRevendedorTheme {
+        ProductsScreen(nav)
+    }
 }
