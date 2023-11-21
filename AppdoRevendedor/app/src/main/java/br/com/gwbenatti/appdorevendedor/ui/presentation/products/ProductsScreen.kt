@@ -23,6 +23,8 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
+import br.com.gwbenatti.appdorevendedor.domain.model.Product
+import br.com.gwbenatti.appdorevendedor.ui.presentation.components.productsList
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -47,7 +49,12 @@ fun ProductsScreen(
                 .fillMaxWidth()
                 .padding(paddingValues)
         ) {
-
+            productsList(
+                products = listOf(
+                    Product(1, "teste", 55.9, null),
+                    Product(2, "teste", 55.9, 44.9),
+                )
+            )
         }
     }
 }
