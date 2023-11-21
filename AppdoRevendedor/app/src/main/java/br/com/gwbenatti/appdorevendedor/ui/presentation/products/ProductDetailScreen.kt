@@ -42,20 +42,14 @@ fun ProductDetailScreen(
 ) {
     val isEditing = (productId != 0)
     var txtName by rememberSaveable { mutableStateOf("") }
-    val txtPrice by rememberSaveable { mutableStateOf("R$ 0,00") }
+    var txtPrice by rememberSaveable { mutableStateOf("R$ 0,00") }
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
-
-    fun txtPriceChange(txt: String) {
-        if (txt.trim().isNotEmpty()) {
-            var rawTxt = "" //txt.replace(Regex("\\d"))
-        }
-    }
 
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             MediumTopAppBar(
-                title = { Text(text = if(isEditing) "Editando produto" else "Novo produto") },
+                title = { Text(text = if (isEditing) "Editando produto" else "Novo produto") },
                 scrollBehavior = scrollBehavior,
                 navigationIcon = {
                     IconButton(
@@ -94,7 +88,7 @@ fun ProductDetailScreen(
                     RevTextField(
                         modifier = Modifier.fillMaxWidth(),
                         value = txtPrice,
-                        onValueChange = { txtPriceChange(it) },
+                        onValueChange = { txtPrice = it },
                         label = "Venda (R$)",
                         singleLine = true,
                         keyboardType = KeyboardType.Decimal,
@@ -104,7 +98,7 @@ fun ProductDetailScreen(
 
                 Button(
                     modifier = Modifier.fillMaxWidth(),
-                    onClick = { /*TODO*/ },
+                    onClick = { navController.popBackStack() },
                 ) {
                     Text(text = "Salvar produto")
                 }
