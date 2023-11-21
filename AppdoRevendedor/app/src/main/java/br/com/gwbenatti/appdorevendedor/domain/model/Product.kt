@@ -5,4 +5,6 @@ data class Product(
     val name: String,
     val salePrice: Double,
     val promotionalSalePrice: Double?,
+    val family: Family,
+    val group: Group,
 )
