@@ -37,8 +37,8 @@ fun LazyListScope.productsList(
     items(products) { product ->
         ListItem(
             modifier = Modifier.clickable { },
-            headlineText = { Text(text = product.name) },
-            supportingText = { Text(text = "${product.family.name} > ${product.group.name}") },
+            headlineContent = { Text(text = product.name) },
+            supportingContent = { Text(text = "${product.family.name} > ${product.group.name}") },
             trailingContent = {
                 if (product.promotionalSalePrice != null) {
                     Column {
