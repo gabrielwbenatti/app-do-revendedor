@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">App do Revendedor</string>
+    <string name="lbl_save_product">Salvar Produto</string>
+    <string name="lbl_new_product">Novo Produto</string>
+    <string name="lbl_product_infos">Dados do Produto</string>
+</resources>

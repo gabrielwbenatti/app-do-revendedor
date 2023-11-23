@@ -13,6 +13,7 @@ import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.NavigationBarItem
@@ -61,25 +62,97 @@ fun ProductsScreen(
             Family(2, "Corpo e Banho"),
             Group(2, "Cuide-se Bem"),
         ),
+        Product(
+            1,
+            "Malbec 100ml",
+            10.9,
+            null,
+            Family(1, "Perfumaria"),
+            Group(1, "Malbec"),
+        ),
+        Product(
+            2,
+            "Malbec Gold 100ml",
+            209.9,
+            189.9,
+            Family(1, "Perfumaria"),
+            Group(1, "Malbec"),
+        ),
+        Product(
+            2,
+            "Hidratante Deleite 400ml",
+            59.9,
+            null,
+            Family(2, "Corpo e Banho"),
+            Group(2, "Cuide-se Bem"),
+        ),
+        Product(
+            1,
+            "Malbec 100ml",
+            10.9,
+            null,
+            Family(1, "Perfumaria"),
+            Group(1, "Malbec"),
+        ),
+        Product(
+            2,
+            "Malbec Gold 100ml",
+            209.9,
+            189.9,
+            Family(1, "Perfumaria"),
+            Group(1, "Malbec"),
+        ),
+        Product(
+            2,
+            "Hidratante Deleite 400ml",
+            59.9,
+            null,
+            Family(2, "Corpo e Banho"),
+            Group(2, "Cuide-se Bem"),
+        ),
+        Product(
+            1,
+            "Malbec 100ml",
+            10.9,
+            null,
+            Family(1, "Perfumaria"),
+            Group(1, "Malbec"),
+        ),
+        Product(
+            2,
+            "Malbec Gold 100ml",
+            209.9,
+            189.9,
+            Family(1, "Perfumaria"),
+            Group(1, "Malbec"),
+        ),
+        Product(
+            2,
+            "Hidratante Deleite 400ml",
+            59.9,
+            null,
+            Family(2, "Corpo e Banho"),
+            Group(2, "Cuide-se Bem"),
+        ),
     )
 
     Scaffold(
         topBar = { ProductsTopBar() },
         bottomBar = { ProductsBottomBar() },
         floatingActionButton = {
-            ExtendedFloatingActionButton(
-                text = { Text(text = "Novo Produto") },
-                icon = { Icon(imageVector = Icons.Default.Add, contentDescription = null) },
+            FloatingActionButton(
                 onClick = {
                     navController.navigate("products/0")
                 }
-            )
+            ) {
+                Icon(imageVector = Icons.Default.Add, contentDescription = null)
+            }
         },
     ) { paddingValues ->
         Surface(
             modifier = Modifier
-                .fillMaxWidth()
                 .padding(paddingValues)
+                .fillMaxWidth()
         ) {
             LazyColumn {
                 productsList(
@@ -149,7 +222,7 @@ private fun ProductsTopBar() {
                     contentDescription = null
                 )
             }
-        }
+        },
     )
 }
 

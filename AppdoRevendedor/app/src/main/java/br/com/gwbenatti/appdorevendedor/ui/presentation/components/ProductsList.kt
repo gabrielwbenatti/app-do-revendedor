@@ -2,7 +2,9 @@ package br.com.gwbenatti.appdorevendedor.ui.presentation.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
@@ -53,5 +55,11 @@ fun LazyListScope.productsList(
                 }
             }
         )
+    }
+
+    if (products.isNotEmpty()) {
+        item {
+            Spacer(Modifier.height(72.dp))
+        }
     }
 }
