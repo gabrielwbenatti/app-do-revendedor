@@ -11,6 +11,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import br.com.gwbenatti.appdorevendedor.domain.model.Family
+import br.com.gwbenatti.appdorevendedor.domain.model.Group
+import br.com.gwbenatti.appdorevendedor.domain.model.Product
 import br.com.gwbenatti.appdorevendedor.navigation.RevNavHost
 import br.com.gwbenatti.appdorevendedor.ui.presentation.products.ProductDetailScreen
 import br.com.gwbenatti.appdorevendedor.ui.presentation.products.ProductsScreen
@@ -35,10 +38,20 @@ class MainActivity : ComponentActivity() {
                         route = "products/{productId}",
                         arguments = listOf(navArgument("productId") { type = NavType.IntType })
                     ) { backStackEntry ->
-                        backStackEntry.arguments?.getInt("productId", 0)?.let {
+                        backStackEntry.arguments?.getInt("productId", 0)?.let { productId ->
+                            val product = if (productId == 0) {
+                                Product()
+                            } else {
+                                Product(
+                                    productId,
+                                    name = "Malbec 100ml",
+                                    salePrice = 189.9,
+                                )
+                            }
+
                             ProductDetailScreen(
-                                navController,
-                                productId = it
+                                navController = navController,
+                                product = product,
                             )
                         }
                     }

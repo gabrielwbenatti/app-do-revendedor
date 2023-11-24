@@ -50,7 +50,7 @@ fun ProductsScreen(
         Product(
             1,
             "Malbec 100ml",
-            10.9,
+            189.9,
             null,
             Family(1, "Perfumaria"),
             Group(1, "Malbec")
@@ -58,7 +58,7 @@ fun ProductsScreen(
         Product(
             1,
             "Malbec 100ml",
-            10.9,
+            189.9,
             null,
             Family(1, "Perfumaria"),
             Group(1, "Malbec")
@@ -66,7 +66,7 @@ fun ProductsScreen(
         Product(
             1,
             "Malbec 100ml",
-            10.9,
+            189.9,
             null,
             Family(1, "Perfumaria"),
             Group(1, "Malbec")
@@ -77,7 +77,12 @@ fun ProductsScreen(
         topBar = { ProductsTopBar() },
         bottomBar = { ProductsBottomBar() },
         floatingActionButton = {
-            ProductsFAB(onClick = { navController.navigate("products/0") })
+            ProductsFAB(
+                onClick = {
+                    val product = Product()
+                    navController.navigate("products/${product.id}")
+                }
+            )
         },
     ) { paddingValues ->
         Surface(
@@ -88,7 +93,9 @@ fun ProductsScreen(
             LazyColumn {
                 productsList(
                     products = products,
-                    onProductClick = { navController.navigate("products/1") }
+                    onProductClick = { product ->
+                        navController.navigate("products/${product.id}")
+                    }
                 )
             }
         }

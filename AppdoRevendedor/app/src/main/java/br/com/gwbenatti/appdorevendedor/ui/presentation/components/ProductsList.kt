@@ -20,7 +20,7 @@ import br.com.gwbenatti.appdorevendedor.domain.model.Product
 @OptIn(ExperimentalMaterial3Api::class)
 fun LazyListScope.productsList(
     products: List<Product> = emptyList(),
-    onProductClick: () -> Unit,
+    onProductClick: (Product) -> Unit,
 ) {
     if (products.isEmpty()) {
         item {
@@ -40,9 +40,9 @@ fun LazyListScope.productsList(
     items(products) { product ->
         ListItem(
             modifier = Modifier
-                .clickable(onClick = onProductClick),
+                .clickable(onClick = { onProductClick(product) }),
             headlineContent = { Text(text = product.name) },
-            supportingContent = { Text(text = "${product.family.name} > ${product.group.name}") },
+            supportingContent = { Text(text = "${product.family?.name} > ${product.group?.name}") },
             trailingContent = {
                 if (product.promotionalSalePrice != null) {
                     Column {

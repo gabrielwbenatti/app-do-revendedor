@@ -32,6 +32,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import br.com.gwbenatti.appdorevendedor.R
+import br.com.gwbenatti.appdorevendedor.domain.model.Product
 import br.com.gwbenatti.appdorevendedor.ui.presentation.components.RevScaffold
 import br.com.gwbenatti.appdorevendedor.ui.presentation.components.RevSectionComponents
 import br.com.gwbenatti.appdorevendedor.ui.presentation.components.RevSwitch
@@ -42,9 +43,9 @@ import br.com.gwbenatti.appdorevendedor.ui.theme.AppDoRevendedorTheme
 @Composable
 fun ProductDetailScreen(
     navController: NavController,
-    productId: Int,
+    product: Product,
 ) {
-    val isEditing = (productId != 0)
+    val isEditing = (product.id != 0)
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
     val tabs = listOf<String>(
@@ -99,23 +100,24 @@ fun ProductDetailScreen(
             }
         },
     ) {
-        when(selectedTabIndex.intValue) {
-            0 -> RegisterTab(navController = navController)
+        when (selectedTabIndex.intValue) {
+            0 -> RegisterTab(navController = navController, product = product)
         }
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun RegisterTab (
+private fun RegisterTab(
     navController: NavController,
+    product: Product,
 ) {
     var txtCatalogReference by rememberSaveable { mutableStateOf("") }
-    var txtName by rememberSaveable { mutableStateOf("") }
+    var txtName by rememberSaveable { mutableStateOf(product.name) }
     var expFamily by rememberSaveable { mutableStateOf(false) }
     var txtFamily by rememberSaveable { mutableStateOf("") }
     var swActive by rememberSaveable { mutableStateOf(true) }
-    var txtSalePrice by rememberSaveable { mutableStateOf("") }
+    var txtSalePrice by rememberSaveable { mutableStateOf(product.salePrice.toString()) }
     var txtCostPrice by rememberSaveable { mutableStateOf("") }
 
     RevSectionComponents(title = "Dados do produto") {
@@ -217,7 +219,7 @@ fun ProductDetailScreenPreview() {
     AppDoRevendedorTheme {
         ProductDetailScreen(
             navController = rememberNavController(),
-            productId = 2,
+            product = Product()
         )
     }
 }
