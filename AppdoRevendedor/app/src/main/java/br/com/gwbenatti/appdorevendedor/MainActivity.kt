@@ -4,17 +4,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.animation.EnterTransition
-import androidx.compose.animation.ExitTransition
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import br.com.gwbenatti.appdorevendedor.domain.model.Family
-import br.com.gwbenatti.appdorevendedor.domain.model.Group
 import br.com.gwbenatti.appdorevendedor.domain.model.Product
-import br.com.gwbenatti.appdorevendedor.navigation.RevNavHost
 import br.com.gwbenatti.appdorevendedor.ui.presentation.products.ProductDetailScreen
 import br.com.gwbenatti.appdorevendedor.ui.presentation.products.ProductsScreen
 import br.com.gwbenatti.appdorevendedor.ui.theme.AppDoRevendedorTheme

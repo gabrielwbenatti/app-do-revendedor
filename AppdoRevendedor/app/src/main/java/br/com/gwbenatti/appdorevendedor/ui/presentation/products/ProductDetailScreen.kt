@@ -1,7 +1,9 @@
 package br.com.gwbenatti.appdorevendedor.ui.presentation.products
 
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
@@ -56,7 +58,8 @@ fun ProductDetailScreen(
     val selectedTabIndex = rememberSaveable { mutableIntStateOf(0) }
 
     RevScaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        modifier = Modifier
+            .nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             Column {
                 TopAppBar(
@@ -119,7 +122,7 @@ private fun RegisterTab(
     var txtFamily by rememberSaveable { mutableStateOf("") }
     var txtCategory by rememberSaveable { mutableStateOf("") }
     var swActive by rememberSaveable { mutableStateOf(true) }
-    var txtSalePrice by rememberSaveable { mutableStateOf(product.salePrice.toString()) }
+    var txtSalePrice by rememberSaveable { mutableStateOf("") }
     var txtCostPrice by rememberSaveable { mutableStateOf("") }
 
     val brands = listOf("O Boticário", "Natura", "Avon")
