@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 
@@ -24,6 +25,7 @@ fun RevTextField(
     value: String,
     label: String,
     singleLine: Boolean = true,
+    readOnly: Boolean = false,
     keyboardType: KeyboardType = KeyboardType.Text,
     imeAction: ImeAction,
     onValueChange: (String) -> Unit,
@@ -38,7 +40,9 @@ fun RevTextField(
             keyboardOptions = KeyboardOptions(
                 keyboardType = keyboardType,
                 imeAction = imeAction,
+                capitalization = KeyboardCapitalization.Sentences,
             ),
+            readOnly = readOnly,
         )
         Spacer(modifier = Modifier.height(8.dp))
     }

@@ -1,7 +1,12 @@
 package br.com.gwbenatti.appdorevendedor.ui.presentation.products
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -23,9 +28,13 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import br.com.gwbenatti.appdorevendedor.R
 import br.com.gwbenatti.appdorevendedor.domain.model.Family
 import br.com.gwbenatti.appdorevendedor.domain.model.Group
 import br.com.gwbenatti.appdorevendedor.domain.model.Product
@@ -35,7 +44,7 @@ import br.com.gwbenatti.appdorevendedor.ui.theme.AppDoRevendedorTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProductsScreen(
-    navController: NavController
+    navController: NavController,
 ) {
     val products = listOf<Product>(
         Product(
@@ -44,23 +53,7 @@ fun ProductsScreen(
             10.9,
             null,
             Family(1, "Perfumaria"),
-            Group(1, "Malbec"),
-        ),
-        Product(
-            2,
-            "Malbec Gold 100ml",
-            209.9,
-            189.9,
-            Family(1, "Perfumaria"),
-            Group(1, "Malbec"),
-        ),
-        Product(
-            2,
-            "Hidratante Deleite 400ml",
-            59.9,
-            null,
-            Family(2, "Corpo e Banho"),
-            Group(2, "Cuide-se Bem"),
+            Group(1, "Malbec")
         ),
         Product(
             1,
@@ -68,23 +61,7 @@ fun ProductsScreen(
             10.9,
             null,
             Family(1, "Perfumaria"),
-            Group(1, "Malbec"),
-        ),
-        Product(
-            2,
-            "Malbec Gold 100ml",
-            209.9,
-            189.9,
-            Family(1, "Perfumaria"),
-            Group(1, "Malbec"),
-        ),
-        Product(
-            2,
-            "Hidratante Deleite 400ml",
-            59.9,
-            null,
-            Family(2, "Corpo e Banho"),
-            Group(2, "Cuide-se Bem"),
+            Group(1, "Malbec")
         ),
         Product(
             1,
@@ -92,47 +69,7 @@ fun ProductsScreen(
             10.9,
             null,
             Family(1, "Perfumaria"),
-            Group(1, "Malbec"),
-        ),
-        Product(
-            2,
-            "Malbec Gold 100ml",
-            209.9,
-            189.9,
-            Family(1, "Perfumaria"),
-            Group(1, "Malbec"),
-        ),
-        Product(
-            2,
-            "Hidratante Deleite 400ml",
-            59.9,
-            null,
-            Family(2, "Corpo e Banho"),
-            Group(2, "Cuide-se Bem"),
-        ),
-        Product(
-            1,
-            "Malbec 100ml",
-            10.9,
-            null,
-            Family(1, "Perfumaria"),
-            Group(1, "Malbec"),
-        ),
-        Product(
-            2,
-            "Malbec Gold 100ml",
-            209.9,
-            189.9,
-            Family(1, "Perfumaria"),
-            Group(1, "Malbec"),
-        ),
-        Product(
-            2,
-            "Hidratante Deleite 400ml",
-            59.9,
-            null,
-            Family(2, "Corpo e Banho"),
-            Group(2, "Cuide-se Bem"),
+            Group(1, "Malbec")
         ),
     )
 
@@ -140,31 +77,39 @@ fun ProductsScreen(
         topBar = { ProductsTopBar() },
         bottomBar = { ProductsBottomBar() },
         floatingActionButton = {
-            FloatingActionButton(
-                onClick = {
-                    navController.navigate("products/0")
-                }
-            ) {
-                Icon(imageVector = Icons.Default.Add, contentDescription = null)
-            }
+            ProductsFAB(onClick = { navController.navigate("products/0") })
         },
     ) { paddingValues ->
         Surface(
             modifier = Modifier
                 .padding(paddingValues)
-                .fillMaxWidth()
+                .fillMaxSize()
         ) {
             LazyColumn {
                 productsList(
                     products = products,
+                    onProductClick = { navController.navigate("products/1") }
                 )
             }
         }
     }
 }
 
+@Composable()
+private fun ProductsFAB(
+    onClick: () -> Unit,
+    imageVector: ImageVector = Icons.Default.Add,
+) {
+    ExtendedFloatingActionButton(
+        onClick = onClick,
+    ) {
+        Icon(imageVector = imageVector, contentDescription = null)
+        Spacer(modifier = Modifier.width(16.dp))
+        Text(text = stringResource(id = R.string.lbl_new_product))
+    }
+}
 
-@Composable
+@Composable()
 private fun ProductsBottomBar() {
     BottomAppBar {
         NavigationBarItem(
@@ -173,7 +118,7 @@ private fun ProductsBottomBar() {
             icon = { Icon(imageVector = Icons.Outlined.CheckCircle, contentDescription = null) },
             alwaysShowLabel = true,
             label = {
-                Text(text = "Vendas")
+                Text(text = stringResource(id = R.string.lbl_sales))
             }
         )
         NavigationBarItem(
@@ -182,7 +127,7 @@ private fun ProductsBottomBar() {
             icon = { Icon(imageVector = Icons.Default.ShoppingCart, contentDescription = null) },
             alwaysShowLabel = true,
             label = {
-                Text(text = "Produtos")
+                Text(text = stringResource(id = R.string.lbl_products))
             }
         )
         NavigationBarItem(
@@ -191,7 +136,7 @@ private fun ProductsBottomBar() {
             icon = { Icon(imageVector = Icons.Outlined.Person, contentDescription = null) },
             alwaysShowLabel = true,
             label = {
-                Text(text = "Clientes")
+                Text(text = stringResource(id = R.string.lbl_customers))
             }
         )
         NavigationBarItem(
@@ -200,18 +145,18 @@ private fun ProductsBottomBar() {
             icon = { Icon(imageVector = Icons.Default.Menu, contentDescription = null) },
             alwaysShowLabel = true,
             label = {
-                Text(text = "Menu")
+                Text(text = stringResource(id = R.string.lbl_menu))
             }
         )
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Composable
+@Composable()
 private fun ProductsTopBar() {
     TopAppBar(
         title = {
-            Text(text = "Produtos")
+            Text(text = stringResource(id = R.string.lbl_products))
         },
         actions = {
             IconButton(
@@ -226,8 +171,8 @@ private fun ProductsTopBar() {
     )
 }
 
-@Preview
-@Composable
+@Preview()
+@Composable()
 fun ProductsScreenPreview() {
     val nav = rememberNavController()
     AppDoRevendedorTheme {

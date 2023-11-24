@@ -3,4 +3,12 @@
     <string name="lbl_save_product">Save Product</string>
     <string name="lbl_new_product">New Product</string>
     <string name="lbl_product_infos">Product Info</string>
+    <string name="lbl_products">Poducts</string>
+    <string name="lbl_sales">Sales</string>
+    <string name="lbl_customers">Customers</string>
+    <string name="lbl_menu">Menu</string>
+    <string name="lbl_editing_product">Editing Product</string>
+    <string name="lbl_register">Register</string>
+    <string name="lbl_special_offer">Special Offer</string>
+    <string name="lbl_history">History</string>
 </resources>

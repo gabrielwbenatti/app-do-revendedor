@@ -4,4 +4,12 @@
     <string name="lbl_save_product">Salvar Produto</string>
     <string name="lbl_new_product">Novo Produto</string>
     <string name="lbl_product_infos">Dados do Produto</string>
+    <string name="lbl_products">Produtos</string>
+    <string name="lbl_sales">Vendas</string>
+    <string name="lbl_customers">Clientes</string>
+    <string name="lbl_menu">Menu</string>
+    <string name="lbl_editing_product">Editando Produto</string>
+    <string name="lbl_register">Cadastro</string>
+    <string name="lbl_special_offer">Promoções</string>
+    <string name="lbl_history">Histórico</string>
 </resources>
