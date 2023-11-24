@@ -15,7 +15,6 @@ fun RevDropdownMenuTextField(
     modifier: Modifier = Modifier,
     value: String,
     label: String,
-    readOnly: Boolean = true,
     imeAction: ImeAction = ImeAction.Next,
     items: List<String>,
     expanded: Boolean = false,
@@ -33,7 +32,6 @@ fun RevDropdownMenuTextField(
                 .menuAnchor(),
             value = value,
             label = label,
-            readOnly = readOnly,
             imeAction = imeAction,
             onValueChange = onValueChange
         )

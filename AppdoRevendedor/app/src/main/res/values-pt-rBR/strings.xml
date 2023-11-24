@@ -12,4 +12,11 @@
     <string name="lbl_register">Cadastro</string>
     <string name="lbl_special_offer">Promoções</string>
     <string name="lbl_history">Histórico</string>
+    <string name="lbl_active">Ativo</string>
+    <string name="lbl_prices">Valores</string>
+    <string name="lbl_name">Name</string>
+    <string name="lbl_category">Categoria</string>
+    <string name="lbl_brand">Marca</string>
+    <string name="lbl_brands">Marcas</string>
+    <string name="lbl_categories">Categorias</string>
 </resources>

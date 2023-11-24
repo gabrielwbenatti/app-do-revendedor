@@ -11,4 +11,11 @@
     <string name="lbl_register">Register</string>
     <string name="lbl_special_offer">Special Offer</string>
     <string name="lbl_history">History</string>
+    <string name="lbl_active">Active</string>
+    <string name="lbl_prices">Prices</string>
+    <string name="lbl_name">Name</string>
+    <string name="lbl_category">Category</string>
+    <string name="lbl_brand">Brand</string>
+    <string name="lbl_brands">Brands</string>
+    <string name="lbl_categories">Categories</string>
 </resources>

@@ -5,9 +5,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Tab
@@ -50,11 +48,11 @@ fun ProductDetailScreen(
     val isEditing = (product.id != 0)
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
-    val tabs = listOf<String>(
+    val tabs = listOf(
         stringResource(id = R.string.lbl_register),
         stringResource(id = R.string.lbl_special_offer),
         stringResource(id = R.string.lbl_history)
-    );
+    )
     val selectedTabIndex = rememberSaveable { mutableIntStateOf(0) }
 
     RevScaffold(
@@ -117,14 +115,17 @@ private fun RegisterTab(
     var txtCatalogReference by rememberSaveable { mutableStateOf("") }
     var txtName by rememberSaveable { mutableStateOf(product.name) }
     var expFamily by rememberSaveable { mutableStateOf(false) }
-    var expCategoria by rememberSaveable { mutableStateOf(false) }
+    var expCategory by rememberSaveable { mutableStateOf(false) }
     var txtFamily by rememberSaveable { mutableStateOf("") }
-    var txtCategoria by rememberSaveable { mutableStateOf("") }
+    var txtCategory by rememberSaveable { mutableStateOf("") }
     var swActive by rememberSaveable { mutableStateOf(true) }
     var txtSalePrice by rememberSaveable { mutableStateOf(product.salePrice.toString()) }
     var txtCostPrice by rememberSaveable { mutableStateOf("") }
 
-    RevSectionComponents(title = "Dados do produto") {
+    val brands = listOf("O Boticário", "Natura", "Avon")
+    val categories = listOf("Perfumaria", "Corpo e Banho", "Infantil")
+
+    RevSectionComponents(title = stringResource(id = R.string.lbl_product_infos)) {
         RevTextField(
             modifier = Modifier.fillMaxWidth(),
             value = txtCatalogReference,
@@ -138,39 +139,39 @@ private fun RegisterTab(
             modifier = Modifier.fillMaxWidth(),
             value = txtName,
             onValueChange = { txtName = it },
-            label = "Nome",
+            label = stringResource(id = R.string.lbl_name),
             singleLine = true,
             imeAction = ImeAction.Next,
             keyboardCapitalization = KeyboardCapitalization.Words,
         )
         RevDropdownMenuTextField(
             modifier = Modifier.fillMaxWidth(),
-            value = txtCategoria,
-            label = "Categoria",
-            expanded = expCategoria,
-            items = listOf("Perfumaria", "Corpo e Banho", "Infantil"),
-            onDismissRequest = { expCategoria = false },
-            onValueChange = { txtCategoria = it },
-            onExpandedChange = { expCategoria = it }
+            value = txtCategory,
+            label = stringResource(id = R.string.lbl_category),
+            expanded = expCategory,
+            items = categories,
+            onDismissRequest = { expCategory = false },
+            onValueChange = { txtCategory = it },
+            onExpandedChange = { expCategory = it }
         )
         RevDropdownMenuTextField(
             modifier = Modifier.fillMaxWidth(),
             value = txtFamily,
-            label = "Marca",
+            label = stringResource(id = R.string.lbl_brand),
             expanded = expFamily,
-            items = listOf("O Boticário", "Natura", "Avon"),
+            items = brands,
             onDismissRequest = { expFamily = false },
             onValueChange = { txtFamily = it },
             onExpandedChange = { expFamily = it }
         )
         RevSwitch(
-            headlineText = "Ativo",
+            headlineText = stringResource(id = R.string.lbl_active),
             checked = swActive,
             onCheckedChange = { swActive = it },
         )
     }
 
-    RevSectionComponents(title = "Valores (R$)") {
+    RevSectionComponents(title = stringResource(id = R.string.lbl_prices)) {
         RevTextField(
             modifier = Modifier.fillMaxWidth(),
             value = txtSalePrice,
@@ -201,11 +202,22 @@ private fun RegisterTab(
 
 @Preview
 @Composable
-fun ProductDetailScreenPreview() {
+fun NewProductDetailScreenPreview() {
     AppDoRevendedorTheme {
         ProductDetailScreen(
             navController = rememberNavController(),
             product = Product()
+        )
+    }
+}
+
+@Preview
+@Composable
+fun EditProductDetailScreenPreview() {
+    AppDoRevendedorTheme {
+        ProductDetailScreen(
+            navController = rememberNavController(),
+            product = Product(1)
         )
     }
 }
