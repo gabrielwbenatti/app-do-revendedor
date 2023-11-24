@@ -27,12 +27,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import br.com.gwbenatti.appdorevendedor.R
 import br.com.gwbenatti.appdorevendedor.domain.model.Product
+import br.com.gwbenatti.appdorevendedor.ui.presentation.components.RevDropdownMenuTextField
 import br.com.gwbenatti.appdorevendedor.ui.presentation.components.RevScaffold
 import br.com.gwbenatti.appdorevendedor.ui.presentation.components.RevSectionComponents
 import br.com.gwbenatti.appdorevendedor.ui.presentation.components.RevSwitch
@@ -115,7 +117,9 @@ private fun RegisterTab(
     var txtCatalogReference by rememberSaveable { mutableStateOf("") }
     var txtName by rememberSaveable { mutableStateOf(product.name) }
     var expFamily by rememberSaveable { mutableStateOf(false) }
+    var expCategoria by rememberSaveable { mutableStateOf(false) }
     var txtFamily by rememberSaveable { mutableStateOf("") }
+    var txtCategoria by rememberSaveable { mutableStateOf("") }
     var swActive by rememberSaveable { mutableStateOf(true) }
     var txtSalePrice by rememberSaveable { mutableStateOf(product.salePrice.toString()) }
     var txtCostPrice by rememberSaveable { mutableStateOf("") }
@@ -137,46 +141,28 @@ private fun RegisterTab(
             label = "Nome",
             singleLine = true,
             imeAction = ImeAction.Next,
+            keyboardCapitalization = KeyboardCapitalization.Words,
         )
-        ExposedDropdownMenuBox(
+        RevDropdownMenuTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = txtCategoria,
+            label = "Categoria",
+            expanded = expCategoria,
+            items = listOf("Perfumaria", "Corpo e Banho", "Infantil"),
+            onDismissRequest = { expCategoria = false },
+            onValueChange = { txtCategoria = it },
+            onExpandedChange = { expCategoria = it }
+        )
+        RevDropdownMenuTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = txtFamily,
+            label = "Marca",
             expanded = expFamily,
+            items = listOf("O Boticário", "Natura", "Avon"),
+            onDismissRequest = { expFamily = false },
+            onValueChange = { txtFamily = it },
             onExpandedChange = { expFamily = it }
-        ) {
-            RevTextField(
-                modifier = Modifier
-                    .menuAnchor()
-                    .fillMaxWidth(),
-                value = txtFamily,
-                label = "Família",
-                readOnly = true,
-                imeAction = ImeAction.Next,
-                onValueChange = { txtFamily = it }
-            )
-            ExposedDropdownMenu(
-                modifier = Modifier.fillMaxWidth(),
-                expanded = expFamily,
-                onDismissRequest = { expFamily = false }
-            ) {
-                DropdownMenuItem(
-                    text = { Text(text = "O Boticário") },
-                    onClick = {
-                        txtFamily = "O Boticário"
-                        expFamily = false
-                    })
-                DropdownMenuItem(
-                    text = { Text(text = "Natura") },
-                    onClick = {
-                        txtFamily = "Natura"
-                        expFamily = false
-                    })
-                DropdownMenuItem(
-                    text = { Text(text = "Avon") },
-                    onClick = {
-                        txtFamily = "Avon"
-                        expFamily = false
-                    })
-            }
-        }
+        )
         RevSwitch(
             headlineText = "Ativo",
             checked = swActive,

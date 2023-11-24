@@ -9,48 +9,48 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 
-//@OptIn(ExperimentalMaterial3Api::class)
-//@Composable
-//fun RevDropdownMenuTextField(
-//    modifier: Modifier = Modifier,
-//) {
-//    ExposedDropdownMenuBox(
-//        expanded = expFamily,
-//        onExpandedChange = { expFamily = it }
-//    ) {
-//        RevTextField(
-//            modifier = Modifier
-//                .menuAnchor()
-//                .fillMaxWidth(),
-//            value = txtFamily,
-//            label = "Família",
-//            readOnly = true,
-//            imeAction = ImeAction.Next,
-//            onValueChange = { txtFamily = it }
-//        )
-//        ExposedDropdownMenu(
-//            modifier = Modifier.fillMaxWidth(),
-//            expanded = expFamily,
-//            onDismissRequest = { expFamily = false }
-//        ) {
-//            DropdownMenuItem(
-//                text = { Text(text = "O Boticário") },
-//                onClick = {
-//                    txtFamily = "O Boticário"
-//                    expFamily = false
-//                })
-//            DropdownMenuItem(
-//                text = { Text(text = "Natura") },
-//                onClick = {
-//                    txtFamily = "Natura"
-//                    expFamily = false
-//                })
-//            DropdownMenuItem(
-//                text = { Text(text = "Avon") },
-//                onClick = {
-//                    txtFamily = "Avon"
-//                    expFamily = false
-//                })
-//        }
-//    }
-//}
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun RevDropdownMenuTextField(
+    modifier: Modifier = Modifier,
+    value: String,
+    label: String,
+    readOnly: Boolean = true,
+    imeAction: ImeAction = ImeAction.Next,
+    items: List<String>,
+    expanded: Boolean = false,
+    onDismissRequest: () -> Unit,
+    onExpandedChange: (Boolean) -> Unit,
+    onValueChange: (String) -> Unit,
+) {
+    ExposedDropdownMenuBox(
+        modifier = modifier,
+        expanded = expanded,
+        onExpandedChange = onExpandedChange
+    ) {
+        RevTextField(
+            modifier = modifier
+                .menuAnchor(),
+            value = value,
+            label = label,
+            readOnly = readOnly,
+            imeAction = imeAction,
+            onValueChange = onValueChange
+        )
+        ExposedDropdownMenu(
+            modifier = Modifier.fillMaxWidth(),
+            expanded = expanded,
+            onDismissRequest = onDismissRequest,
+        ) {
+            items.forEach { item ->
+                DropdownMenuItem(
+                    text = { Text(text = item) },
+                    onClick = {
+                        onValueChange(item)
+                        onDismissRequest()
+                    }
+                )
+            }
+        }
+    }
+}

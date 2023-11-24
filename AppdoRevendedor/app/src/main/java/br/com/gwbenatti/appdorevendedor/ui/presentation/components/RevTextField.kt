@@ -27,6 +27,7 @@ fun RevTextField(
     singleLine: Boolean = true,
     readOnly: Boolean = false,
     keyboardType: KeyboardType = KeyboardType.Text,
+    keyboardCapitalization: KeyboardCapitalization = KeyboardCapitalization.Sentences,
     imeAction: ImeAction,
     onValueChange: (String) -> Unit,
 ) {
@@ -40,7 +41,7 @@ fun RevTextField(
             keyboardOptions = KeyboardOptions(
                 keyboardType = keyboardType,
                 imeAction = imeAction,
-                capitalization = KeyboardCapitalization.Sentences,
+                capitalization = keyboardCapitalization,
             ),
             readOnly = readOnly,
         )
