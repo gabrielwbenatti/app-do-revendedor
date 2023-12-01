@@ -26,6 +26,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import br.com.gwbenatti.appdorevendedor.R
+import br.com.gwbenatti.appdorevendedor.domain.model.Product
 import br.com.gwbenatti.appdorevendedor.ui.presentation.products.ProductsScreen
 
 
@@ -34,17 +35,31 @@ import br.com.gwbenatti.appdorevendedor.ui.presentation.products.ProductsScreen
 fun MainScreen(
     navController: NavController,
 ) {
-    var selectedIndex = 0
-    fun onDestinationClick() {}
+    var selectedIndex = 1
+    fun onDestinationClick(index: Int) {
+        selectedIndex = index;
+    }
 
     Scaffold(
-//        bottomBar = {
-//            MainBottomBar(
-//                selectedIndex = selectedIndex,
-//            )
-//        },
+        bottomBar = {
+            MainBottomBar(
+                selectedIndex = selectedIndex,
+            )
+        },
+        floatingActionButton = {
+            if (selectedIndex == 1) {
+                ProductsFAB(onClick = {
+                    val product = Product()
+                    navController.navigate("products/${product.id}")
+                })
+            }
+        }
     ) { paddingValues ->
-        ProductsScreen(navController = navController)
+        when {
+            selectedIndex == 1 -> {
+                ProductsScreen(navController = navController)
+            }
+        }
     }
 }
 

@@ -19,6 +19,7 @@ fun RevSectionComponents(
     Column(
         modifier = modifier
     ) {
+        Spacer(modifier = Modifier.height(8.dp))
         Text(
             text = title,
             style = MaterialTheme.typography.bodySmall.copy(
@@ -28,6 +29,6 @@ fun RevSectionComponents(
         )
         Spacer(modifier = Modifier.height(8.dp))
         content()
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(8.dp))
     }
 }

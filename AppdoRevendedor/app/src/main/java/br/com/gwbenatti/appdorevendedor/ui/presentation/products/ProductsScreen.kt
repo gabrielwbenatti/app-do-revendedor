@@ -48,7 +48,7 @@ import br.com.gwbenatti.appdorevendedor.ui.theme.AppDoRevendedorTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProductsScreen(
-    navController: NavController,
+    navController: NavController
 ) {
     val products = listOf<Product>(
         Product(
@@ -79,14 +79,14 @@ fun ProductsScreen(
 
     Scaffold(
         topBar = { ProductsTopBar() },
-        floatingActionButton = {
-            ProductsFAB(
-                onClick = {
-                    val product = Product()
-                    navController.navigate("products/${product.id}")
-                }
-            )
-        },
+//        floatingActionButton = {
+//            ProductsFAB(
+//                onClick = {
+//                    val product = Product()
+//                    navController.navigate("products/${product.id}")
+//                }
+//            )
+//        },
     ) { paddingValues ->
         Surface(
             modifier = Modifier

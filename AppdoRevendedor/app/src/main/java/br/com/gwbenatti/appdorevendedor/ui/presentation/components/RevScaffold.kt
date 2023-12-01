@@ -31,15 +31,15 @@ fun RevScaffold(
         bottomBar = bottomBar,
         floatingActionButton = floatingActionButton,
     ) { paddingValues ->
-        Box (
+        Surface(
             modifier = modifier
-                .fillMaxWidth()
+                .fillMaxSize()
                 .imePadding()
         ) {
             Column(
                 modifier = Modifier
                     .padding(top = paddingValues.calculateTopPadding())
-                    .padding(start = 16.dp, top = 16.dp, end = 16.dp)
+                    .padding(start = 16.dp, end = 16.dp)
                     .verticalScroll(rememberScrollState())
             ) {
                 content()
