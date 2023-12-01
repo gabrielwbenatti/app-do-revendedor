@@ -48,7 +48,7 @@ fun ProductDetailScreen(
     product: Product,
 ) {
     val isEditing = (product.id != 0)
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
 
     val tabs = listOf(
         stringResource(id = R.string.lbl_register),

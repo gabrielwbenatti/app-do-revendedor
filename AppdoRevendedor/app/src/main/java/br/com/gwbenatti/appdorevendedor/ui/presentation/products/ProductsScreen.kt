@@ -1,7 +1,13 @@
 package br.com.gwbenatti.appdorevendedor.ui.presentation.products
 
+
+import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -25,6 +31,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -72,7 +79,6 @@ fun ProductsScreen(
 
     Scaffold(
         topBar = { ProductsTopBar() },
-        bottomBar = { ProductsBottomBar() },
         floatingActionButton = {
             ProductsFAB(
                 onClick = {
@@ -84,7 +90,7 @@ fun ProductsScreen(
     ) { paddingValues ->
         Surface(
             modifier = Modifier
-                .padding(paddingValues)
+                .padding(top = paddingValues.calculateTopPadding())
                 .fillMaxSize()
         ) {
             LazyColumn {
@@ -95,6 +101,7 @@ fun ProductsScreen(
                     }
                 )
             }
+
         }
     }
 }
@@ -110,48 +117,6 @@ private fun ProductsFAB(
         Icon(imageVector = imageVector, contentDescription = null)
         Spacer(modifier = Modifier.width(16.dp))
         Text(text = stringResource(id = R.string.lbl_new_product))
-    }
-}
-
-@Composable()
-private fun ProductsBottomBar() {
-    BottomAppBar {
-        NavigationBarItem(
-            selected = false,
-            onClick = { /*TODO*/ },
-            icon = { Icon(imageVector = Icons.Outlined.CheckCircle, contentDescription = null) },
-            alwaysShowLabel = true,
-            label = {
-                Text(text = stringResource(id = R.string.lbl_sales))
-            }
-        )
-        NavigationBarItem(
-            selected = true,
-            onClick = { /*TODO*/ },
-            icon = { Icon(imageVector = Icons.Default.ShoppingCart, contentDescription = null) },
-            alwaysShowLabel = true,
-            label = {
-                Text(text = stringResource(id = R.string.lbl_products))
-            }
-        )
-        NavigationBarItem(
-            selected = false,
-            onClick = { /*TODO*/ },
-            icon = { Icon(imageVector = Icons.Outlined.Person, contentDescription = null) },
-            alwaysShowLabel = true,
-            label = {
-                Text(text = stringResource(id = R.string.lbl_customers))
-            }
-        )
-        NavigationBarItem(
-            selected = false,
-            onClick = { /*TODO*/ },
-            icon = { Icon(imageVector = Icons.Default.Menu, contentDescription = null) },
-            alwaysShowLabel = true,
-            label = {
-                Text(text = stringResource(id = R.string.lbl_menu))
-            }
-        )
     }
 }
 
